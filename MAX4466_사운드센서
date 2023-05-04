@@ -1,0 +1,33 @@
+import RPi.GPIO as GPIO
+import time
+
+# 핀 번호 정의
+CLK = 11
+MISO = 9
+MOSI = 10
+CS = 8
+
+# 초기화
+def init():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(CLK, GPIO.OUT)
+    GPIO.setup(MISO, GPIO.IN)
+    GPIO.setup(MOSI, GPIO.OUT)
+    GPIO.setup(CS, GPIO.OUT)
+
+# ADC 값 측정 함수
+def get_adc(channel):
+    # 채널과 CS 핀 선택
+    if (channel < 0) or (channel > 7):
+        print("Invalid channel.")
+        return -1
+    GPIO.output(CS, GPIO.HIGH)
+    GPIO.output(CLK, GPIO.LOW)
+    GPIO.output(CS, GPIO.LOW)
+
+    # 시작 비트
+    command = channel
+    command |= 0x18
+    command <<= 3
+    for i in range(5):
+       
