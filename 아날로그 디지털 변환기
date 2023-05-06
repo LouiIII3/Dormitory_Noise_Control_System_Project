@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <wiringPi.h>
+#include <mcp3004.h>
+#define BASE 200
+#define SPI_CHAN 0
+int main(void) {
+wiringPiSetup();
+mcp3004Setup(BASE, SPI_CHAN); 
+int x;
+while (1) {
+x = analogRead(BASE);
+if (x < 500)
+printf("%d\n", x);
+delay(100);
+}
+return 0;
+}
