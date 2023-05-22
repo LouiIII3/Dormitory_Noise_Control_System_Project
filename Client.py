@@ -4,7 +4,8 @@ from tkinter import messagebox
 import time
 import socket
 
-# 서버의 주소입니다. hostname 또는 ip address를 사용할 수 있습니다.
+
+# 서버의 주소입니다.(hostname 또는 ip address를 사용할 수 있습니다.)
 HOST = '192.168.*.*'  
 # 서버에서 지정해 놓은 포트 번호입니다. 
 PORT = **      
@@ -16,10 +17,10 @@ client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # 지정한 HOST와 PORT를 사용하여 서버에 접속합니다. 
 client_socket.connect((HOST, PORT))
 
-# 메시지를 전송합니다. 
 
+#메시지 전송하기
 
-# 메시지를 수신합니다.
+#메시지 수신하기
 copy ='0'
 
 
