@@ -41,7 +41,7 @@ window_x = 20
 window_y = 5
 window.geometry(f"{window_width}x{window_height}+{window_x}+{window_y}")
 
-url = "http://1.228.201.87:8010/hosil2"
+url = "http://ip 주소/hosil2"
 
 #경고 문구 나왔을때
 def blink_background():
@@ -75,7 +75,7 @@ def left_button_click():
 
 def alert():
     print("스레드 종료3")
-    # urlchk = "http://1.228.201.87:8010/hosil2chk"
+    # urlchk = "ip /hosil2chk"
     data1 = {"hosil2_alert" : 1}
     requests.post(url, data=json.dumps(data1), headers=headers)
 
@@ -98,7 +98,7 @@ def right_button_click():
     print("스레드 종료")
     print("스레드 종료2")
     # urlchk = "http://1.228.201.87:8010/hosil2chk"
-    # data1 = {"check2" : "노노노노노노노논노ㅗㅗㅗㅗㅗㅗㅗㅗ"}
+    # data1 = {"check2" : "No data"}
     # requests.post(urlchk, data=json.dumps(data1), headers=headers)
 
     request_thread = threading.Thread(target=send_ok)
@@ -113,7 +113,7 @@ def right_button_click():
 
 def send_ok():
     print("스레드 종료3")
-    urlchk = "http://1.228.201.87:8010/hosil2chk"
+    urlchk = "http://ip주소/hosil2chk"
     data1 = {"check2" : 1}
     requests.post(urlchk, data=json.dumps(data1), headers=headers)
     
