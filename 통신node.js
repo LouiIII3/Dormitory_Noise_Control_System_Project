@@ -25,6 +25,7 @@ switch (myArgs[0]) {
         console.log("Turning the LED On")
         writeGPIO("value", "1", GPIO14_PATH)
         break;
+        /*값이 1이되어 켜진다.*/
     case 'off':
         console.log("Turning the LED Off")
         writeGPIO("value", "0", GPIO14_PATH)
