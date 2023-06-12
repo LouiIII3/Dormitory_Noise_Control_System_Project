@@ -24,7 +24,8 @@ dust1_info = dust_info[0].find('span', {'class': 'txt'}).text
 dust2_info = dust_info[1].find('span', {'class': 'txt'}).text
 print("초미세먼지:" + dust2_info)
 
-# 윈도우 생성
+
+#윈도우를 생성하기
 window = ctk.CTk()
 window_width = 800
 window_height = 480
@@ -32,7 +33,7 @@ window_x = 20
 window_y = 5
 window.geometry(f"{window_width}x{window_height}+{window_x}+{window_y}")
 
-# 윈도우 크기 변경 불가능하도록 설정
+# 윈도우 크기 변경 불가능하도록 설정(고정)
 window.resizable(False, False)
 
 # 큰 레이블 생성
@@ -58,6 +59,7 @@ dust_label = ctk.CTkLabel(window, text="현재기온: " + today_temper + "°C  �
                           width=30, height=5, font=("Arial", 14))
 dust_label.place(x=520, y=0)
 
+(호수)
 room_number = "101"
 
 time_label = tk.Label(window, text="시간: ", font=("Arial", 24))
