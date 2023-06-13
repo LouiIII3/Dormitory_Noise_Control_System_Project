@@ -14,6 +14,8 @@ buzzer_pin = 18
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(buzzer_pin, GPIO.OUT)
 
+#쓰레드 구현 예정
+
 stop_event = threading.Event()  # 종료 이벤트 객체 생성
 
 # 부저 소리 생성 함수
