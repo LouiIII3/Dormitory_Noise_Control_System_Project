@@ -16,3 +16,12 @@
   - using namespace std;: C++의 std 네임스페이스를 사용하여 std::cout 및 std::endl과 같은 표준 입출력을 간단하게 사용한다.
   - PIN_TOUCH: 터치 센서에 연결된 GPIO 핀 번호
   - DEBOUNCE_TIME: 디바운스 시간(중복 터치 입력 방지)
+  
+  
+<h3>3. DHT11.cpp</h3>
+  <h4>- 내용: DHT11 온습도 센서를 사용하여 온도와 습도를 측정</h4>
+  
+  - LH_THRESHOLD: 데이터 비트의 HIGH 상태를 판별하기 위한 임계값
+  (이 값보다 높은 길이의 HIGH 신호는 1로 인식한다.)
+  - humid와 temp 변수: 습도와 온도 값을 저장
+  - piHiPri(99) : 함수를 호출하여 프로세스를 최고 우선순위 설정
