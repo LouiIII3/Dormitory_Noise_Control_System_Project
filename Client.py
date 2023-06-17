@@ -1,128 +1,187 @@
 import tkinter as tk
-from tkinter import ttk
-from tkinter import messagebox
+import customtkinter as ctk
+from datetime import datetime
+import requests
+from bs4 import BeautifulSoup
+import json
 import time
-import socket
+import RPi.GPIO as GPIO
+import threading
 
+buzzer_pin = 18
 
-# 서버의 주소입니다.(hostname 또는 ip address를 사용할 수 있습니다.)
-HOST = '192.168.*.*'  
-# 서버에서 지정해 놓은 포트 번호입니다. 
-PORT = **      
+# GPIO 초기화
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(buzzer_pin, GPIO.OUT)
 
-# 소켓 객체를 생성합니다. 
-# 주소 체계(address family)로 IPv4, 소켓 타입으로 TCP 사용합니다.  
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+stop_event = threading.Event()  # 종료 이벤트 객체 생성
 
-# 지정한 HOST와 PORT를 사용하여 서버에 접속합니다. 
-client_socket.connect((HOST, PORT))
+# 부저 소리 생성 함수
+def buzz(pitch, duration):
+    period = 1.0 / pitch
+    delay = period / 2
+    cycles = int(duration * pitch)
+    for _ in range(cycles):
+        GPIO.output(buzzer_pin, GPIO.HIGH)
+        time.sleep(delay)
+        GPIO.output(buzzer_pin, GPIO.LOW)
+        time.sleep(delay)
 
+def play_buzzer():
+    buzz(329, 1)  # 미
 
-#메시지 전송하기
-
-#메시지 수신하기
-copy ='0'
-
-
-content = 0
-firstCount = 0
-Room = 0
-class MyTableWidget(ttk.Treeview):
-    def __init__(self, master, rows, cols):
-        global content
-        super().__init__(master, columns=("", "", ""), show="headings")
-        self.initUI()
-        self.bind('<ButtonRelease-1>', self.cell_was_clicked)
-        self.heading("#1", text="호실")
-        self.heading("#2", text="소리")
-        self.heading("#3", text="경고")
-        self.insert("", 0, values=["1호실", "0", "0"])
-        self.insert("", 1, values=["2호실", "0", "0"])
-        self.column("#1", anchor="center")
-        self.column("#2", anchor="center")
-        self.column("#3", anchor="center")
+def cleanup_gpio():
+    GPIO.cleanup()
         
-        self.place(x=0,width=400, height=400)
+# 윈도우 생성
+window = ctk.CTk()
+window_width = 800
+window_height = 480
+window_x = 20
+window_y = 5
+window.geometry(f"{window_width}x{window_height}+{window_x}+{window_y}")
 
-        btn = ttk.Button(master, text="경고주기", command=self.buttonClicked)
-        btn.pack(pady=10,side="bottom")
-        print("그래")
-        
-    def initUI(self):
-        # 여기서 소켓 통신을 하는 것이다
-        data = client_socket.recv(1024)
-        copy='0'
-        if copy == data:
-            print()
-        else:
-            received_data = data.decode().replace("'", "")  # 따옴표 제거
-            print('서버로부터 받은 메모장의 내용:', received_data)
-        
-        copy = received_data
+url = "ip주소/hosil2"
 
-        f = open('sound_average.txt', 'w')
-        f.write(data.decode())
-        f.close()
-        
-        global content
-        '''file_path = '/Users/taewonyoon/Desktop/text.txt'  # 가져올 텍스트 파일의 경로를 지정합니다.
-        try:
-            with open(file_path, 'r') as file:
-                content = file.read()
-                print(content)
-        except FileNotFoundError:
-            print("파일을 찾을 수 없습니다.")'''
-        self.pack(padx=20, pady=20)
-        # newcopy = ""
-        # for i in range(len(copy)):
-        #     if i != 0 and i != len(copy)-1:
-        #         newcopy += copy[i]
-        
-            
-        # content = int(newcopy)
-        global firstCount
-        global Room
-        if firstCount == 0:
-            firstCount = 1
-        else:
-            content = float(received_data)
-            
-        if content > 110:
-            Room += 1
-            
-        if self.get_children():
-            item_id = self.get_children()[0]
-            new_values = ["1호실", content, Room]
-            self.item(item_id, values=new_values)
-        
+#경고 문구 나왔을때
+def blink_background():
+    # global blink_job  # 전역 변수로 접근
 
-        self.after(10, self.initUI)
+    play_buzzer()  # 부저 소리 재생
+    current_color = label.cget("background")  # 현재 배경 색상 가져오기
 
-    def cell_was_clicked(self, event):
-        row = self.focus()
-        if row:
-            item = self.item(row)
-            print(f"Clicked on {row} with value {item['values'][event.column]}")
 
-    def show_custom_message(self):
-        messagebox.showinfo("메시지", "버튼 클릭")
-        self.on_confirmation()
+    # if current_color == "red":
+    #     label.configure(background="white", fg="black")  # 배경 색상을 흰색, 글씨 색상을 검정색으로 설정
+    # else:
+    label.configure(background="red", fg="white")  # 배경 색상을 빨강, 글씨 색상을 흰색으로 설정
+    # blink_job = label.after(500, blink_background) 
+    
+    
+def left_button_click():
+    # 배경 색상 변경
+    # label.configure(bg="blue")
+    # 2초 후에 원래 메시지와 배경으로 복원
+    #window.after(2000, restore_background)
+    # restore_background()
+    global thread
+    thread.join(0.1) # 스레드 종료 대기 -> 스레드 다 처리될떄까지
+    print("스레드 종료11")
+    request_thread = threading.Thread(target=alert)
+    request_thread.start()
+    request_thread.join(0.15)
+    
+    # thread = threading.Thread(target=response_background)
+    # print("스레드 종료4")
+    # thread.start()
+    # print("스레드 종료5")
 
-    def on_confirmation(self):
-        print("확인 버튼이 클릭되었습니다.")
+def alert():
+    print("스레드 종료3")
+    # urlchk = "ip주소/hosil2chk"
+    data1 = {"hosil2_alert" : 1}
+    requests.post(url, data=json.dumps(data1), headers=headers)
 
-    def buttonClicked(self):
-        print("Button Clicked")
-        self.show_custom_message()
 
-root = tk.Tk()
-root.attributes('-fullscreen', True)
-root.title("My Table Widget")
+    
+def right_button_click():
+    '''right_check = {
+        "check2" : "hosil2_right_Button"
+    }
+    response = requests.post(urlchk, data=json.dumps(right_check), headers=headers)'''
+    # global blink_job  # 전역 변수로 접근
+    # if blink_job is not None:
+    #     label.after_cancel(blink_job)  # blink_background 함수 실행을 취소
+    cleanup_gpio()
+    label.configure(background="white", fg="black")  # 배경 색상을 흰색, 글씨 색상을 검정색으로 설정
+    print("Right button clicked")
+    
+    global thread
+    thread.join(0.1) # 스레드 종료 대기 -> 스레드 다 처리될떄까지
+    print("스레드 종료")
+    print("스레드 종료2")
+    # urlchk = "ip주소/hosil2chk"
+    # data1 = {"check2" : "nono"}
+    # requests.post(urlchk, data=json.dumps(data1), headers=headers)
 
-frame = tk.Frame(root)
-frame.pack(expand=True, fill=tk.BOTH, padx=100, pady=100)
+    request_thread = threading.Thread(target=send_ok)
+    request_thread.start()
+    request_thread.join(0.1)
+    print("마무리")
+    
+    # thread = threading.Thread(target=response_background)
+    # print("스레드 종료4")
+    # thread.start()
+    # print("스레드 종료5")
 
-tableWidget = MyTableWidget(frame, 2, 3)
-tableWidget.pack(expand=True, fill=tk.BOTH)
+def send_ok():
+    print("스레드 종료3")
+    urlchk = "ip주소/hosil2chk"
+    data1 = {"check2" : 1}
+    requests.post(urlchk, data=json.dumps(data1), headers=headers)
+    
 
-root.mainloop()
+def update_time():
+    current_time = datetime.now().strftime(
+        "%Y-%m-%d %H:%M:%S")  # 현재 시간을 원하는 형식으로 포맷팅
+    label_text.set("시간: {}\n \n \n {}호".format(
+        current_time, room_number))  # 레이블 텍스트 업데이트
+    window.after(1000, update_time)  # 1초마다 update_time 함수 호출
+
+# def restore_background():
+#     label.configure(bg="white")  # 배경 색상 원래대로 변경
+#     update_time()  # 원래 메시지로 복원
+    
+    
+
+data = {"warning_check" : " "}
+headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+blink_job = None
+
+# 경고 문구 나왔을 때 blink_background 함수 실행
+def response_background():
+    response = requests.post(url, data=json.dumps(data), headers=headers)
+    print(response.text)
+    i_data = json.loads(response.text)
+    notion = i_data["notion"]
+    alert = i_data["alert"]
+    if(alert == "O"):
+        blink_background()
+    window.after(100, response_background)
+    print("전송중")
+    
+    
+# 윈도우 크기 변경 불가능하도록 설정
+window.resizable(False, False)
+
+# 큰 레이블 생성
+label_text = tk.StringVar()  # 방 호수와 시간을 업데이트할 문자열 변수 생성
+label = tk.Label(window, textvariable=label_text, font=(
+    "Arial", 24), borderwidth=2, relief="solid", width=50, height=6)
+label.place(relx=0.5, rely=0.3, anchor="center")
+
+left_button = ctk.CTkButton(
+    window, text="민원신고", command=left_button_click, width=200, height=100)
+left_button.configure(border_color="#000080",
+                      fg_color="#000080", font=("Arial", 16, "bold"))
+left_button.place(x=50, y=320)
+
+right_button = ctk.CTkButton(
+    window, text="경고확인", command=right_button_click, width=200, height=100)
+right_button.configure(border_color="#000080",
+                       fg_color="#000080", font=("Arial", 16, "bold"))
+right_button.place(x=560, y=320)
+
+# dust_label = ctk.CTkLabel(window, text="현재기온: " + today_temper + "°C  날씨: " + today_weather, fg_color="transparent",
+#                           width=30, height=5, font=("Arial", 14))
+# dust_label.place(x=560, y=0)
+
+room_number = "102"
+
+thread = threading.Thread(target=response_background)
+thread.start()
+
+# update_time()  
+window.attributes('-fullscreen', True)
+window.mainloop()
