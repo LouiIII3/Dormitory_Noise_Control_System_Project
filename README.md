@@ -1,7 +1,12 @@
 # Dormitory_Noise_Control_System
 
-1. clientUi(소켓).py 설명 (수정중)
-  - MyTableWidget 클래스: ttk.Treeview를 상속 + 테이블 위젯을 만든다.
-  - initUI 메서드: GUI를 초기화 및 소리 수준이 일정 기준을 초과할 경우 경고 횟수 증가
-  - cell_was_clicked 메서드 : 테이블 위젯의 셀이 클릭 되었을때 호출
-  - buttonClicked 메서드 : 경고 버튼이 클릭 되었을때 호출되는 메서드
+1. Reason for Creation:
+  - There are individuals in the dormitory who make noise until dawn.
+  - Provide accurate criteria data regarding noise.
+  - Provide information on a systematic management system to identify the source of the noise.
+  - Simplify the reporting process to enhance convenience in managing noise within the dormitory.
+
+
+2. Scenario:
+
+  - When noise occurs in Room 1, the resident of Room 2 reports the complaint to the dormitory supervisor. The dormitory supervisor then verifies the noise in Room 1 and issues a warning to the occupants of that room. This information is communicated back to the resident of Room 1, who reported the noise complaint, for confirmation.
