@@ -15,4 +15,8 @@
 <hr>
 <h2>code description</h2>
 
-1.Client.py
+1. Client.py
+- This code is a Python script that uses the Tkinter library to create graphical user interface (GUI) applications.
+- tkinter: The main library for creating GUI applications in Python.
+- json: A module for working with JSON data.
+
