@@ -19,4 +19,5 @@
 - This code is a Python script that uses the Tkinter library to create graphical user interface (GUI) applications.
 - tkinter: The main library for creating GUI applications in Python.
 - json: A module for working with JSON data.
+- requests: A module for making HTTP requests.
 
