@@ -16,8 +16,14 @@
 <h2>code description</h2>
 
 1. Client.py
-- This code is a Python script that uses the Tkinter library to create graphical user interface (GUI) applications.
+- code is a Python script that uses the Tkinter library to create graphical user interface (GUI) applications.
 - tkinter: The main library for creating GUI applications in Python.
 - json: A module for working with JSON data.
 - requests: A module for making HTTP requests.
+
+2.temp.py
+- Define the getWeather() function.
+- Print the weather ID and temperature from the wethaerRes response variable.
+- Store the weather ID and temperature in the weatherId and temp variables, respectively.
+- Return the temp and weatherId.
 
