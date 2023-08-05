@@ -20,10 +20,15 @@
 <br>
 <br>
 <h2>Hardware and materials used in the project</h2>
+
 - Sound Sensor: For noise measurement purposes (to be installed on the walls between dormitory rooms).
+
 - Display: For reporting and notifications (to be installed in dormitory rooms and the supervisor's office).
+  
 - Buzzer: Used to notify the arrival of signals on the display.
+  
 - Push Button: Intended for reporting purposes inside the dormitory rooms and for verifying warning signals sent from the supervisor's office.
+  
 - Other Materials: Filament (for use with a 3D printer).
 
 
