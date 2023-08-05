@@ -3,9 +3,6 @@
   <img style="width: 40%; display: inline-block;" src="https://github.com/LouiIII3/Dormitory_Noise_Control_System/assets/119919129/ef5703b4-c228-4374-872d-f1eee4bdfdec"/>
 </div>
 
-<br>
-<br>
-
 1. Reason for Creation:
   - There are individuals in the dormitory who make noise until dawn.
   - Provide accurate criteria data regarding noise.
@@ -19,6 +16,8 @@
 
 
 <hr>
+<br>
+<br>
 <h2>code description</h2>
 
 1. Client.py
@@ -55,6 +54,8 @@
 - The code operates in a blocking manner until it receives a response.
 
 <hr>
+<br>
+<br>
 <h2>Added part</h2>
 1. added threads.
 
