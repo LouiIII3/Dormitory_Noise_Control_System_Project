@@ -48,6 +48,11 @@
 - The read_adc function reads analog values from MCP3008. It uses SPI communication to request analog-to-digital conversion from MCP3008 and returns the digital value.
 - Exception Handling: The code handles the KeyboardInterrupt exception (when the user presses Ctrl+C) and closes the SPI interface.
 
+5. Dormitory supervisor.py
+- This code is an example that sends a POST request to the server with a given IP address, receives the response, and displays it in a Tkinter-based GUI application.
+- The sendWarning method opens a graph window and continuously updates the sound values in real-time to display them in the form of a graph.
+- In the initUI method, the code receives responses from the server and displays sound values for each room. If there is a warning, it shows an alert message using a message box.
+- The code operates in a blocking manner until it receives a response.
 
 <hr>
 <h2>Added part</h2>
