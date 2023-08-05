@@ -15,6 +15,19 @@
   - When noise occurs in Room 1, the resident of Room 2 reports the complaint to the dormitory supervisor. The dormitory supervisor then verifies the noise in Room 1 and issues a warning to the occupants of that room. This information is communicated back to the resident of Room 1, who reported the noise complaint, for confirmation.
 
 
+
+<hr>
+<br>
+<br>
+<h2>Hardware and materials used in the project</h2>
+- Sound Sensor: For noise measurement purposes (to be installed on the walls between dormitory rooms).
+- Display: For reporting and notifications (to be installed in dormitory rooms and the supervisor's office).
+- Buzzer: Used to notify the arrival of signals on the display.
+- Push Button: Intended for reporting purposes inside the dormitory rooms and for verifying warning signals sent from the supervisor's office.
+- Other Materials: Filament (for use with a 3D printer).
+
+
+
 <hr>
 <br>
 <br>
