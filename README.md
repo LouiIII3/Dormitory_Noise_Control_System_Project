@@ -1,4 +1,5 @@
 # Dormitory_Noise_Control_System
+<img width="80%" src="https://github.com/LouiIII3/Dormitory_Noise_Control_System/assets/119919129/ef5703b4-c228-4374-872d-f1eee4bdfdec"/>
 
 1. Reason for Creation:
   - There are individuals in the dormitory who make noise until dawn.
