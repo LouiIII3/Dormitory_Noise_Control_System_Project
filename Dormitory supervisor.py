@@ -287,7 +287,7 @@ class MyTableWidget(ttk.Treeview):
 
             
             # content = int(content)
-            print(f"실행운됐는데 이상하네{temp} : {type(temp)}")
+            print(f"실행은 됐는데 이상한 경우{temp} : {type(temp)}")
             
             # if content == 0:
             #     rand_val = precontent
