@@ -35,7 +35,15 @@
 
 3. sever.py
 - This code is used to handle various types of POST requests, process data, and provide responses accordingly. The overall logic of the code is related to monitoring and   controlling rooms and alarm systems.
-- Required library: The code makes use of necessary libraries such as express and body-parser, where body-parser is used to parse JSON data from the request body.
+- Library imports: The code makes use of necessary libraries such as express and body-parser, where body-parser is used to parse JSON data from the request body.
 - GET Handler: The server handles incoming GET requests to the root URL ('/') and responds with "The server responds according to the GET request."
 
-
+4. sound_measurement.py
+- This code is a simple example that reads sound sensor values and sends them to a web server. Depending on how the web server utilizes this data, it opens up possibilities for more functionalities and applications.
+- Library imports: The code imports the libraries it uses, including spidev, time, requests, and the json library.
+- The web server address is set in the url variable.
+- The data variable is defined as a dictionary containing the data to be sent to the web server.
+- The headers variable is used to set the HTTP request headers.
+- Initializing SPI Interface: The SPI interface is initialized to establish communication between the MCP3008 and the Raspberry Pi.
+- The read_adc function reads analog values from MCP3008. It uses SPI communication to request analog-to-digital conversion from MCP3008 and returns the digital value.
+- Exception Handling: The code handles the KeyboardInterrupt exception (when the user presses Ctrl+C) and closes the SPI interface.
