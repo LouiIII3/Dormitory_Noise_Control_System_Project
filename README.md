@@ -33,8 +33,7 @@
 - Return the temp and weatherId.
 
 3. sever.py
-- This server is used to handle various types of POST requests, process data, and provide responses accordingly. The overall logic of the code is related to monitoring and   
-  controlling rooms and alarm systems.
+- This code is used to handle various types of POST requests, process data, and provide responses accordingly. The overall logic of the code is related to monitoring and   controlling rooms and alarm systems.
 - Required library: The code makes use of necessary libraries such as express and body-parser, where body-parser is used to parse JSON data from the request body.
 - GET Handler: The server handles incoming GET requests to the root URL ('/') and responds with "The server responds according to the GET request."
 
