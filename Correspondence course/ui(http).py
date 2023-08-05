@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # 날씨 정보 가져오기
-weather_area = "아산시 신창면"
+weather_area = "서울시"
 weather_html = requests.get(f"https://search.naver.com/search.naver?&query={weather_area}날씨")
 weather_soup = BeautifulSoup(weather_html.text, 'html.parser')
 
