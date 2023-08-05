@@ -47,3 +47,14 @@
 - Initializing SPI Interface: The SPI interface is initialized to establish communication between the MCP3008 and the Raspberry Pi.
 - The read_adc function reads analog values from MCP3008. It uses SPI communication to request analog-to-digital conversion from MCP3008 and returns the digital value.
 - Exception Handling: The code handles the KeyboardInterrupt exception (when the user presses Ctrl+C) and closes the SPI interface.
+
+
+<hr>
+<h2>Added part</h2>
+1. added threads.
+
+The reason for implementing threads in this code is as follows:
+
+Background Task Processing: The response_background function performs periodic data retrieval from the web server and processing. Such tasks are usually better handled in the background. By using threads to create separate background tasks, it prevents the user interface from freezing or becoming unresponsive, thereby enhancing the user experience.
+
+Concurrency and Parallel Processing: Threads allow for the simultaneous execution of multiple tasks. By using threads, it enables parallel processing of tasks, such as making data requests to the web server and generating buzzer sounds, concurrently.
