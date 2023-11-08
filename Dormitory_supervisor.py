@@ -11,7 +11,6 @@ import threading
 import matplotlib
 matplotlib.use('TkAgg')
 
-
 url = "ip주소/sagam"
 url2 = "ip주소/sagam_chk"
 
