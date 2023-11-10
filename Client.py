@@ -8,8 +8,8 @@ import time
 import RPi.GPIO as GPIO
 import threading
 
-buzzer_pin = 18
 
+buzzer_pin = 18
 # GPIO 초기화
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(buzzer_pin, GPIO.OUT)
