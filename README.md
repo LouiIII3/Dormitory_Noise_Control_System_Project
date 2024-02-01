@@ -1,5 +1,5 @@
 # Dormitory_Noise_Control_System
-<div style="text-align: center;">
+<div align="center">
   <img style="width: 40%; display: inline-block;" src="https://github.com/LouiIII3/Dormitory_Noise_Control_System/assets/119919129/ef5703b4-c228-4374-872d-f1eee4bdfdec"/>
 </div>
 
